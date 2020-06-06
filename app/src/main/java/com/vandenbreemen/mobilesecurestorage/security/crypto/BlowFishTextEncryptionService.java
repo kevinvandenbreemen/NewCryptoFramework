@@ -58,7 +58,7 @@ public class BlowFishTextEncryptionService implements EncryptionService, ObjectE
             SystemLog.get().error("Error encrypting", e);
         } finally {
             for (SecureString ss : keyStrings) {    //	Dump temp keys from memory
-                ss.finalize();
+                ss.finalize();  //  NOSONAR Needed for security reasons
             }
         }
         return new byte[0];
@@ -88,7 +88,7 @@ public class BlowFishTextEncryptionService implements EncryptionService, ObjectE
             SystemLog.get().error("Error decrypting", e);
         } finally {
             for (SecureString ss : keyStrings) {    //	Dump temp keys from memory
-                ss.finalize();
+                ss.finalize();  //  NOSONAR Needed for security reasons
             }
         }
         return new byte[0];

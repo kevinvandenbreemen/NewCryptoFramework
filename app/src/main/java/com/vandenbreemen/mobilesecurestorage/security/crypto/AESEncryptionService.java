@@ -65,7 +65,7 @@ public class AESEncryptionService implements EncryptionService, ObjectEncryptor 
             SystemLog.get().error("Error encrypting", e);
         } finally {
             for (SecureString ss : keyBuckets) {
-                ss.finalize();
+                ss.finalize();  //  NOSONAR Needed for security reasons
             }
         }
         return new byte[0];
@@ -98,7 +98,7 @@ public class AESEncryptionService implements EncryptionService, ObjectEncryptor 
             SystemLog.get().error("Error decryption", e);
         } finally {
             for (SecureString ss : keyBuckets) {
-                ss.finalize();
+                ss.finalize();  //  NOSONAR Needed for security reasons
             }
         }
         return new byte[0];

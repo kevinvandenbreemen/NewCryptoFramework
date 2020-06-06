@@ -49,8 +49,8 @@ public class DualLayerEncryptionService implements EncryptionService, ObjectEncr
                 BytesToBits.secureHash(  /*Hash this in case parameters of SCRYPT are included in hash*/
                         BytesToBits.obscenelyDifficultHash(keySpace.copyBytes(), BytesToBits.secureHash(password.getBytes())))));
 
-        keySpace.finalize();
-        password.finalize();
+        keySpace.finalize();    //  NOSONAR Needed for security reasons
+        password.finalize();    //  NOSONAR Needed for security reasons
 
         return ret;
 
