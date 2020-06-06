@@ -22,11 +22,11 @@ public class KeySet extends SecureString {
     /**
      * The actual keys
      */
-    private Map<KEYNUM, SecureString> keyset;
+    private Map<KEYNUM, SecureString> keyMappings;
 
     public KeySet() {
         super();
-        this.keyset = new HashMap<>();
+        this.keyMappings = new HashMap<>();
     }
 
     /**
@@ -36,7 +36,7 @@ public class KeySet extends SecureString {
      * @param key
      */
     public final void setKey(KEYNUM keyNum, SecureString key) {
-        this.keyset.put(keyNum, key);
+        this.keyMappings.put(keyNum, key);
     }
 
     /**
@@ -56,7 +56,7 @@ public class KeySet extends SecureString {
         if (isFinalized())    //	Just do nothing.
             return;
 
-        for (SecureString v : keyset.values()) {
+        for (SecureString v : keyMappings.values()) {
             v.randomFinalize();
         }
 
@@ -75,15 +75,15 @@ public class KeySet extends SecureString {
         if (isFinalized())
             throw new MSSRuntime("This KeySet appears to have been finalized.  Not allowing key access to continue to protect data");
 
-        if (keyset.get(keyNum) == null)
+        if (keyMappings.get(keyNum) == null)
             throw new MSSRuntime("Key at " + keyNum + " not populated.  Probably a coding problem");
-        return keyset.get(keyNum);
+        return keyMappings.get(keyNum);
     }
 
     @Override
     public final SecureString copy() {
         KeySet ret = new KeySet();
-        keyset.entrySet().forEach(entry -> ret.setKey(entry.getKey(), entry.getValue().copy()));
+        keyMappings.entrySet().forEach(entry -> ret.setKey(entry.getKey(), entry.getValue().copy()));
         return ret;
     }
 
@@ -95,13 +95,13 @@ public class KeySet extends SecureString {
             return false;
 
         KeySet otherKeySet = (KeySet) anotherSet;
-        if (this.keyset.size() != otherKeySet.keyset.size())
+        if (this.keyMappings.size() != otherKeySet.keyMappings.size())
             return false;
 
-        for (KEYNUM keyNum : this.keyset.keySet()) {
-            if (!otherKeySet.keyset.containsKey(keyNum))
+        for (Map.Entry<KEYNUM, SecureString> entry : this.keyMappings.entrySet()) {
+            if (!otherKeySet.keyMappings.containsKey(entry.getKey()))
                 return false;
-            if (!otherKeySet.keyset.get(keyNum).equals(this.keyset.get(keyNum)))
+            if (!otherKeySet.keyMappings.get(entry.getKey()).equals(entry.getValue()))
                 return false;
         }
 
@@ -110,7 +110,7 @@ public class KeySet extends SecureString {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), keyset);
+        return Objects.hash(super.hashCode(), keyMappings);
     }
 
     /**
