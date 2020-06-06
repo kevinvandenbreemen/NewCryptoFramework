@@ -22,7 +22,7 @@ public class KeySet extends SecureString {
     /**
      * The actual keys
      */
-    private transient Map<KEYNUM, SecureString> keyset;
+    private Map<KEYNUM, SecureString> keyset;
 
     public KeySet() {
         super();
