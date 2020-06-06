@@ -34,7 +34,7 @@ public class CloningFactory {
 
         registerCloner(Boolean.class, Boolean.TRUE::equals);
 
-        registerCloner(BYTE_ARRAY_TYPE, (ICloner) object -> {
+        registerCloner(BYTE_ARRAY_TYPE, (ICloner) object -> {   //  NOSONAR
             byte[] original = (byte[]) object;
             byte[] ret = new byte[original.length];
             System.arraycopy(original, 0, ret, 0, original.length);
@@ -100,6 +100,7 @@ public class CloningFactory {
      * @param <T>
      * @author kevin
      */
+    @FunctionalInterface
     public static interface ICloner<T> {
 
         /**
