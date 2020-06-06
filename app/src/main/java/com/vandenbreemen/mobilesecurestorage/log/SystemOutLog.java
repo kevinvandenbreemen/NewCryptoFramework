@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author kevin
  */
-public class SystemOutLog extends CurrentSystemLog {
+public class SystemOutLog implements CurrentSystemLog {
 
     private void printMsg(String message, Object... args) {
         String msg = MessageFormatter.arrayFormat(message, args).getMessage();

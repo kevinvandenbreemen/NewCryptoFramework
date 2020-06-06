@@ -903,7 +903,7 @@ public class IndexedFile {
     }
 
     @Override
-    protected final void finalize() {
+    protected final void finalize() {   //  NOSONAR This is needed for security reasons
 
         close();
     }

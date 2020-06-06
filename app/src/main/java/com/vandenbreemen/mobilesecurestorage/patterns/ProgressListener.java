@@ -8,20 +8,20 @@ package com.vandenbreemen.mobilesecurestorage.patterns;
  *
  * @author kevin
  */
-public interface ProgressListener<Progress> {
+public interface ProgressListener<P> {
 
     /**
      * Set max value of progress
      *
      * @param progressMax
      */
-    public void setMax(Progress progressMax);
+    public void setMax(P progressMax);
 
     /**
      * Set current value of progress
      *
      * @param progress
      */
-    public void update(Progress progress);
+    public void update(P progress);
 
 }

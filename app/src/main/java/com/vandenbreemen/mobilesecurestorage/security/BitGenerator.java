@@ -11,13 +11,7 @@ public interface BitGenerator {
     /**
      * For generating 0-padding
      */
-    public static BitGenerator DEFAULT_0 = new BitGenerator() {
-
-        @Override
-        public int getBit(int position) {
-            return 0;
-        }
-    };
+    public static BitGenerator DEFAULT_0 = position -> 0;
 
     /**
      * Gets a new bit at the given position

@@ -15,7 +15,7 @@ public class MSSRuntime extends RuntimeException {
     /**
      * Attributes this exception can carry with it
      */
-    private Map<String, Object> attributes;
+    private final transient Map<String, Object> attributes;
 
     public MSSRuntime(String message) {
         super(message);

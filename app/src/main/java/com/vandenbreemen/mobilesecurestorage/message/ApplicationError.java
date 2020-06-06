@@ -25,6 +25,14 @@ public class ApplicationError extends Exception {
         return false;
     }
 
+    @Override
+    public int hashCode() {
+        if (getMessage() != null) {
+            return getMessage().hashCode();
+        }
+        return 0;
+    }
+
     public ApplicationError(String message, Throwable cause) {
         super(message, cause);
     }
