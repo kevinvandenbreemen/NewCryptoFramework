@@ -21,7 +21,7 @@ public class SecureString implements CharSequence, Serializable {
     /**
      * Bytes inside the string
      */
-    private volatile byte[] bytes;
+    private volatile byte[] bytes;  //  NOSONAR Don't want passwords etc. to be thread cached
 
     private volatile boolean isFinalized;
 
@@ -108,7 +108,7 @@ public class SecureString implements CharSequence, Serializable {
      * This implementation zeros out the contents
      */
     @Override
-    public void finalize() {
+    public void finalize() {    //  NOSONAR Needed for security reasons
         Bytes.wipe(bytes);
         isFinalized = true;
     }

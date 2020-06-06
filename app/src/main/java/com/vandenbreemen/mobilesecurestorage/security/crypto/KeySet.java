@@ -5,6 +5,7 @@ import com.vandenbreemen.mobilesecurestorage.security.SecureString;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * <h2>Intro</h2>
@@ -21,11 +22,11 @@ public class KeySet extends SecureString {
     /**
      * The actual keys
      */
-    Map<KEYNUM, SecureString> keyset;
+    private transient Map<KEYNUM, SecureString> keyset;
 
     public KeySet() {
         super();
-        this.keyset = new HashMap<KEYNUM, SecureString>();
+        this.keyset = new HashMap<>();
     }
 
     /**
@@ -50,7 +51,7 @@ public class KeySet extends SecureString {
      * Wipe out the keys in memory
      */
     @Override
-    public final void finalize() {
+    public final void finalize() {  //  NOSONAR Keysets need to be explicitly finalized in case GC does not run
 
         if (isFinalized())    //	Just do nothing.
             return;
@@ -82,9 +83,7 @@ public class KeySet extends SecureString {
     @Override
     public final SecureString copy() {
         KeySet ret = new KeySet();
-        keyset.entrySet().forEach(entry -> {
-            ret.setKey(entry.getKey(), entry.getValue().copy());
-        });
+        keyset.entrySet().forEach(entry -> ret.setKey(entry.getKey(), entry.getValue().copy()));
         return ret;
     }
 
@@ -109,12 +108,17 @@ public class KeySet extends SecureString {
         return true;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), keyset);
+    }
+
     /**
      * Enumerated keys
      *
      * @author kevin
      */
-    public static enum KEYNUM {
+    public enum KEYNUM {
         Key1,
         Key2,
         Key3,
