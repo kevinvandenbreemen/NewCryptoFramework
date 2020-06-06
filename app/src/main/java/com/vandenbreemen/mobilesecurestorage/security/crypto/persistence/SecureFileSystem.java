@@ -69,7 +69,7 @@ public abstract class SecureFileSystem extends IndexedFile {
     @Override
     protected final void emergencyCleanup() {
         try {
-            getPassword().finalize();
+            getPassword().finalize();   //  NOSONAR Needed for security reasons
             SystemLog.get().error("Performed emergency password finalize!");
         } catch (Exception ex) {
             SystemLog.get().error("Could not finalize the password", ex);
@@ -146,7 +146,7 @@ public abstract class SecureFileSystem extends IndexedFile {
 
         super.visitDataUnits(passwordChgCallback);
 
-        getPassword().finalize();
+        getPassword().finalize();   //  NOSONAR Needed for security reasons
 
     }
 
