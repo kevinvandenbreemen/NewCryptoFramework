@@ -11,7 +11,7 @@ import com.vandenbreemen.mobilesecurestorage.log.slf4j.MessageFormatter;
  *
  * @author kevin
  */
-public class AndroidSystemLog extends CurrentSystemLog {
+public class AndroidSystemLog implements CurrentSystemLog {
 
     private static final String TAG = SystemLog.class.getSimpleName();
 

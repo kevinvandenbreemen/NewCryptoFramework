@@ -8,6 +8,7 @@ import org.spongycastle.jcajce.provider.digest.SHA256;
 import org.spongycastle.jcajce.provider.digest.SHA3;
 import org.spongycastle.util.Arrays;
 
+import java.nio.charset.StandardCharsets;
 import java.util.BitSet;
 
 /**
@@ -40,6 +41,7 @@ public class BytesToBits {
     private BitGenerator bitGenerator = BitGenerator.DEFAULT_0;
 
     public BytesToBits() {
+        //  DEFCON
     }
 
     /**
@@ -73,10 +75,9 @@ public class BytesToBits {
     public static byte[] stripZeros(byte[] bytes, int blockSize) {
         int finalByteSize = bytes.length;
         for (int j = bytes.length - 1; j > 0; j--) {
-            if (bytes[j] != 0) {
-                break;
-            } else
+            if (bytes[j] == 0) {
                 finalByteSize--;
+            }
 
             //	If we've shaved off enough zeros to get us to something that's
             //	works out to be blocks of the desired block size then we're done
@@ -193,10 +194,10 @@ public class BytesToBits {
      */
     public static byte[] getBytes(String key) {
         try {
-            return key.getBytes("UTF-8");
+            return key.getBytes(StandardCharsets.UTF_8);
         } catch (Exception ex) {
             SystemLog.get().error("Error getting bytes", ex);
-            return null;
+            return new byte[0];
         }
     }
 
@@ -225,7 +226,7 @@ public class BytesToBits {
             for (int j = 0; j < 8; j++) {
                 nextBit = bitGenerator.getBit(j * (i + 1));
                 if (nextBit == 1)
-                    tempByte = (byte) (tempByte | (1 << j));
+                    tempByte = (byte) (tempByte | (1 << j) & 0xff);
                 else
                     tempByte = (byte) (tempByte & ~(1 << j));
             }

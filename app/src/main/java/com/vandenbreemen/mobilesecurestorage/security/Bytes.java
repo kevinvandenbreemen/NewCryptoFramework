@@ -62,8 +62,7 @@ public class Bytes {
         try (FileInputStream fis = new FileInputStream(openedFile)) {
             byte[] bytesFromFile = new byte[(int) openedFile.length()];
 
-            //	Load in the bytes from the file
-            fis.read(bytesFromFile);
+            while (fis.read(bytesFromFile) > 0);
             return bytesFromFile;
         } catch (Exception ex) {
             SystemLog.get().error("Unable to load data from file", ex);
