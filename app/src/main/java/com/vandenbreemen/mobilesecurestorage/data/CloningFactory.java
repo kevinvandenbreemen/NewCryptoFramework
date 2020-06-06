@@ -37,9 +37,7 @@ public class CloningFactory {
         registerCloner(BYTE_ARRAY_TYPE, (ICloner) object -> {
             byte[] original = (byte[]) object;
             byte[] ret = new byte[original.length];
-            for (int i = 0; i < original.length; i++) {
-                ret[i] = original[i];
-            }
+            System.arraycopy(original, 0, ret, 0, original.length);
             return ret;
         });
     }
