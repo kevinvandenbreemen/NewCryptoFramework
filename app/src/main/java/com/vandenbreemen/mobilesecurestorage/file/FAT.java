@@ -338,7 +338,7 @@ public class FAT implements Serializable {
     }
 
     FileDetails fileDetails(String fileName) {
-        return fileMetadata.computeIfAbsent(fileName, (name) -> new FileDetails());
+        return fileMetadata.computeIfAbsent(fileName, name -> new FileDetails());
     }
 
     void setFileMeta(String fileName, FileMeta fileMeta) {
@@ -353,7 +353,7 @@ public class FAT implements Serializable {
                 if (l1 > l2) {
                     return 1;
                 }
-                if (l1 == l2) {
+                if (l1.equals(l2)) {
                     return 0;
                 }
                 return -1;
