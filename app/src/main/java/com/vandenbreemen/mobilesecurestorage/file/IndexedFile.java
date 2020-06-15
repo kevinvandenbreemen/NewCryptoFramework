@@ -990,6 +990,10 @@ public class IndexedFile {
         }
     }
 
+    public long getNumUnitsUsed() {
+        return fat.getTotalUnits() - fat._totalUnused();
+    }
+
     /**
      * Interface that allows client code to make updates to a specific unit at a specific location in the {@link IndexedFile}
      * without needing to worry about where that location is.

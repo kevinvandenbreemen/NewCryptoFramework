@@ -1116,4 +1116,17 @@ public class IndexedFileTest {
         assertTrue("Updated unit expected", ByteUtils.equals(new byte[]{2, 5, 0, 1}, data));
     }
 
+    @Test
+    public void shouldGetTotalUnitsOnFileSystem() throws Exception {
+
+        File tempFile = TestConstants.getTestFile("test_jpgimport_persist" + System.currentTimeMillis() + ".dat");
+
+        IndexedFile idf = new IndexedFile(tempFile);
+
+        idf.importFile(TestConstants.TEST_RES_IMG_1);
+
+        assertEquals(1, idf.getNumUnitsUsed());
+
+    }
+
 }
