@@ -842,7 +842,7 @@ public class IndexedFile {
      *
      * @return
      */
-    protected final long getTotalUnits() {
+    public final long getTotalUnits() {
 
         FileAllocationView fatView = getFileView(FAT.FILENAME);
 
