@@ -73,6 +73,14 @@ private class SecureFileSystemInteractorImpl(private val secureFileSystem: Secur
     }
 }
 
+class SecureFileSystemInteractorFactory private constructor(){
+    companion object {
+        fun get(forFile: SecureFileSystem): SecureFileSystemInteractor {
+            return SecureFileSystemInteractorImpl(forFile)
+        }
+    }
+}
+
 fun getSecureFileSystemInteractor(secureFileSystem: SecureFileSystem): SecureFileSystemInteractor {
-    return SecureFileSystemInteractorImpl(secureFileSystem)
+    return SecureFileSystemInteractorFactory.get(secureFileSystem)
 }
