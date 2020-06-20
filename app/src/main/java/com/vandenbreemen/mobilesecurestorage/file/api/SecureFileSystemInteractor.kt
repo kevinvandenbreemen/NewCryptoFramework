@@ -69,7 +69,7 @@ private class SecureFileSystemInteractorImpl(private val secureFileSystem: Secur
     }
 
     override fun info(fileName: String): FileInfo {
-        return FileInfo(fileName, secureFileSystem.size(fileName))
+        return FileInfo(fileName, secureFileSystem.size(fileName), secureFileSystem.getDetails(fileName).createDate)
     }
 }
 

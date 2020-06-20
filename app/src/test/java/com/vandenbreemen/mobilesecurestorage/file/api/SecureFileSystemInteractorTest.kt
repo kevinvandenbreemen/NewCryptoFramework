@@ -1,6 +1,5 @@
 package com.vandenbreemen.mobilesecurestorage.file.api
 
-import android.os.Environment
 import com.vandenbreemen.mobilesecurestorage.TestConstants
 import com.vandenbreemen.mobilesecurestorage.file.getFileImporter
 import com.vandenbreemen.mobilesecurestorage.security.Bytes
@@ -8,9 +7,9 @@ import com.vandenbreemen.mobilesecurestorage.security.SecureString
 import com.vandenbreemen.mobilesecurestorage.security.crypto.listFiles
 import com.vandenbreemen.mobilesecurestorage.security.crypto.persistence.SecureFileSystem
 import junit.framework.TestCase.*
-import org.spongycastle.pqc.math.linearalgebra.ByteUtils
 import org.junit.Before
 import org.junit.Test
+import org.spongycastle.pqc.math.linearalgebra.ByteUtils
 import java.io.File
 
 /**
@@ -119,6 +118,22 @@ class SecureFileSystemInteractorTest {
         //assertNotNull(info, "System should have retrieved info")
         assertEquals("1.jpg", info.fileName)
         assertTrue(info.size > 0)
+    }
+
+    @Test
+    fun `Get Info should Include File Creation Date`() {
+
+        //  Arrange
+        sfs().touch("testFile")
+        sut = getSecureFileSystemInteractor(sfs())
+        val createDate = sfs().getDetails("testFile").createDate
+
+        //  Act
+        val fileInfo = sut.info("testFile")
+
+        //  Assert
+        assertEquals(createDate, fileInfo.createDate)
+
     }
 
 }
