@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -138,6 +139,7 @@ public class FAT implements Serializable {
             if (!fileAllocations.containsKey(fileName)) {
                 List<Long> indexes = new ArrayList<>();
                 fileAllocations.put(fileName, indexes);
+                defineMetadataForNewFile(fileName);
             }
 
             //	If the unit is already allocated do nothing more.
@@ -169,9 +171,21 @@ public class FAT implements Serializable {
             if (!fileAllocations.containsKey(fileName)) {
                 fileAllocations.put(fileName, new ArrayList<Long>());
             }
+
+            defineMetadataForNewFile(fileName);
+
         } finally {
             accessLock.writeLock().unlock();
         }
+    }
+
+    /**
+     * Sets create date etc. for a newly created file
+     * @param fileName
+     */
+    private void defineMetadataForNewFile(String fileName) {
+        FileDetails details = fileDetails(fileName);
+        details.setCreateDate(Calendar.getInstance());
     }
 
     /**
