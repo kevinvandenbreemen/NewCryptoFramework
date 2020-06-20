@@ -16,6 +16,7 @@ public class FileDetails implements Serializable {
     private long createDate;
 
     public FileDetails() {
+        //  Default constructor
     }
 
     public FileMeta getFileMeta() {
@@ -31,11 +32,17 @@ public class FileDetails implements Serializable {
         return fileMeta.getFileType();
     }
 
-    public void setCreateDate(Calendar date) {
-        createDate = date.getTimeInMillis();
+    /**
+     * Set the create date on the file.  If this has already been performed then this method will do nothing.
+     * @param date  Desired creation date
+     */
+    public final void setCreateDate(Calendar date) {
+        if(createDate == 0) {
+            createDate = date.getTimeInMillis();
+        }
     }
 
-    Calendar getCreateDate() {
+    public final Calendar getCreateDate() {
         if(createDate > 0) {
             Calendar ret = Calendar.getInstance();
             ret.setTimeInMillis(createDate);

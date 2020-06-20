@@ -5,6 +5,7 @@ import com.vandenbreemen.mobilesecurestorage.file.IndexedFile
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
 import org.junit.Test
+import java.util.*
 
 /**
  *
@@ -48,6 +49,27 @@ class IndexedFileAdditionalFunctionalityTests {
         idf = IndexedFile(tempFile)
         val details = idf.getDetails("UpdatedName")
         assertEquals(createDate, details.createDate)
+
+    }
+
+    @Test
+    fun `Impossible to update file create date`() {
+
+        //  Arrange
+        val tempFile =
+            TestConstants.getTestFile("test_jpgimport_persist" + System.currentTimeMillis() + ".dat")
+        var idf = IndexedFile(tempFile)
+
+        //  Act
+        idf.touch("newFile")
+        var details = idf.getDetails("newFile")
+        val expectedCreateDate = details.createDate
+        details.createDate = Calendar.getInstance()
+        idf.touch("SomeOtherFileSoSFSGetsSaved")
+
+        //  Assert
+        idf = IndexedFile(tempFile)
+        assertEquals(expectedCreateDate, idf.getDetails("newFile").createDate)
 
     }
 
