@@ -4,13 +4,13 @@ import com.vandenbreemen.mobilesecurestorage.data.Pair;
 import com.vandenbreemen.mobilesecurestorage.file.ChainedUnit;
 import com.vandenbreemen.mobilesecurestorage.file.ChunkedMediumException;
 import com.vandenbreemen.mobilesecurestorage.file.IndexedFile;
-import com.vandenbreemen.mobilesecurestorage.log.SystemLog;
 import com.vandenbreemen.mobilesecurestorage.message.MSSRuntime;
 import com.vandenbreemen.mobilesecurestorage.patterns.ProgressListener;
 import com.vandenbreemen.mobilesecurestorage.security.SecureString;
 import com.vandenbreemen.mobilesecurestorage.security.crypto.DualLayerEncryptionService;
 import com.vandenbreemen.mobilesecurestorage.security.crypto.KeySet;
 import com.vandenbreemen.mobilesecurestorage.security.crypto.ObjectEncryptor;
+import com.vandenbreemen.standardandroidlogging.log.SystemLog;
 
 import java.io.File;
 import java.util.function.Consumer;

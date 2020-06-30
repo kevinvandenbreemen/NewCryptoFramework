@@ -1,8 +1,6 @@
 @file:JvmName("FileImporterJavaInteractor")
 package com.vandenbreemen.mobilesecurestorage.file
 
-import com.vandenbreemen.mobilesecurestorage.log.SystemLog
-import com.vandenbreemen.mobilesecurestorage.log.e
 import com.vandenbreemen.mobilesecurestorage.message.ApplicationError
 import com.vandenbreemen.mobilesecurestorage.message.MSSRuntime
 import com.vandenbreemen.mobilesecurestorage.security.Bytes

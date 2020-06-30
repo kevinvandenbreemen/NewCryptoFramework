@@ -1,7 +1,7 @@
 package com.vandenbreemen.mobilesecurestorage.data;
 
-import com.vandenbreemen.mobilesecurestorage.log.SystemLog;
 import com.vandenbreemen.mobilesecurestorage.message.MSSRuntime;
+import com.vandenbreemen.standardandroidlogging.log.SystemLog;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

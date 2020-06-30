@@ -1,11 +1,11 @@
 package com.vandenbreemen.mobilesecurestorage.file.api
 
 import com.vandenbreemen.mobilesecurestorage.file.ImportedFileData
-import com.vandenbreemen.mobilesecurestorage.log.SystemLog
-import com.vandenbreemen.mobilesecurestorage.log.e
 import com.vandenbreemen.mobilesecurestorage.message.ApplicationError
 import com.vandenbreemen.mobilesecurestorage.security.crypto.getFileMeta
 import com.vandenbreemen.mobilesecurestorage.security.crypto.persistence.SecureFileSystem
+import com.vandenbreemen.standardandroidlogging.log.SystemLog
+import com.vandenbreemen.standardandroidlogging.log.e
 import java.io.Serializable
 
 /**

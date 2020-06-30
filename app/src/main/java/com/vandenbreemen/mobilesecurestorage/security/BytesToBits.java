@@ -1,7 +1,7 @@
 package com.vandenbreemen.mobilesecurestorage.security;
 
-import com.vandenbreemen.mobilesecurestorage.log.SystemLog;
 import com.vandenbreemen.mobilesecurestorage.message.MSSRuntime;
+import com.vandenbreemen.standardandroidlogging.log.SystemLog;
 
 import org.spongycastle.crypto.generators.SCrypt;
 import org.spongycastle.jcajce.provider.digest.SHA256;

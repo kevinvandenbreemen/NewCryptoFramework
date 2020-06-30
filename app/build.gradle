@@ -40,6 +40,8 @@ dependencies {
     api "com.madgag.spongycastle:core:$spongyCastleVersion"
     api "com.madgag.spongycastle:prov:$spongyCastleVersion"
 
+    implementation 'com.github.kevinvandenbreemen:standard-android-logging:1.0.0.1100'
+
     def cache2kVersion="1.0.2.Final"
     api "org.cache2k:cache2k-core:$cache2kVersion"
 

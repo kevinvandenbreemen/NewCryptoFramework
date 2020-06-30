@@ -1,6 +1,6 @@
 package com.vandenbreemen.mobilesecurestorage.file;
 
-import com.vandenbreemen.mobilesecurestorage.log.slf4j.MessageFormatter;
+import com.vandenbreemen.standardandroidlogging.log.slf4j.MessageFormatter;
 
 /**
  * <h2>Intro</h2>

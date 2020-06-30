@@ -5,14 +5,14 @@ import com.vandenbreemen.mobilesecurestorage.data.Pair;
 import com.vandenbreemen.mobilesecurestorage.data.Serialization;
 import com.vandenbreemen.mobilesecurestorage.file.api.FileDetails;
 import com.vandenbreemen.mobilesecurestorage.file.api.FileType;
-import com.vandenbreemen.mobilesecurestorage.log.SystemLog;
-import com.vandenbreemen.mobilesecurestorage.log.slf4j.MessageFormatter;
 import com.vandenbreemen.mobilesecurestorage.message.ApplicationError;
 import com.vandenbreemen.mobilesecurestorage.message.MSSRuntime;
 import com.vandenbreemen.mobilesecurestorage.security.BytesToBits;
 import com.vandenbreemen.mobilesecurestorage.security.SecureString;
 import com.vandenbreemen.mobilesecurestorage.security.crypto.persistence.SecureDataUnit;
 import com.vandenbreemen.mobilesecurestorage.util.NumberUtils;
+import com.vandenbreemen.standardandroidlogging.log.SystemLog;
+import com.vandenbreemen.standardandroidlogging.log.slf4j.MessageFormatter;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;

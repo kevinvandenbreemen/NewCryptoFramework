@@ -1,8 +1,8 @@
 package com.vandenbreemen.mobilesecurestorage.file;
 
 import com.vandenbreemen.mobilesecurestorage.data.ByteReader;
-import com.vandenbreemen.mobilesecurestorage.log.SystemLog;
 import com.vandenbreemen.mobilesecurestorage.message.MSSRuntime;
+import com.vandenbreemen.standardandroidlogging.log.SystemLog;
 
 import org.spongycastle.pqc.math.linearalgebra.ByteUtils;
 
