@@ -55,6 +55,16 @@ private class FileLoaderImpl : FileLoader {
 
 }
 
-public fun getFileImporter(): FileLoader {
-    return FileLoaderImpl()
+fun getFileImporter(): FileLoader {
+    return FileLoaderFactory.getFileImporter()
+}
+
+class FileLoaderFactory private constructor() {
+
+    companion object {
+        fun getFileImporter(): FileLoader {
+            return FileLoaderImpl()
+        }
+    }
+
 }
