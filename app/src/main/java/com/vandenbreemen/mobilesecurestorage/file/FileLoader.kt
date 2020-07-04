@@ -55,6 +55,6 @@ private class FileLoaderImpl : FileLoader {
 
 }
 
-fun getFileImporter(): FileLoader {
+public fun getFileImporter(): FileLoader {
     return FileLoaderImpl()
 }
