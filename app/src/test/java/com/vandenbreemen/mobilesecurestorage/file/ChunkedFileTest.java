@@ -175,6 +175,35 @@ public class ChunkedFileTest {
     }
 
     @Test
+    public void shouldProvidePublicAPIForRecognizingFile_NotAFile() throws Exception {
+        File testFile = TestConstants.getTestFile("fakeFile_" + System.currentTimeMillis());
+        RandomAccessFile raf = new RandomAccessFile(testFile, "rw");
+        raf.seek(0);
+        raf.write(new byte[]{1, 2, 3});
+        raf.close();
+
+        assertFalse(ChunkedFile.isChunkedFile(testFile));
+    }
+
+    @Test
+    public void shouldProvidePublicAPIForRecognizingFile_ValidFile() throws Exception {
+        File testFile = TestConstants.getTestFile("fakeFile_" + System.currentTimeMillis());
+        ChunkedFile.getChunkedFile(testFile);
+
+        assertTrue(ChunkedFile.isChunkedFile(testFile));
+    }
+
+    @Test
+    public void shouldNotRecognizedNonExistentFileAsChunkedFile() throws  Exception {
+        assertFalse(ChunkedFile.isChunkedFile(new File("fake_"+System.currentTimeMillis())));
+    }
+
+    @Test
+    public void shouldNotRecognizeDirectoryAsChunkedFile() throws Exception {
+        assertFalse(ChunkedFile.isChunkedFile(new File(".")));
+    }
+
+    @Test
     public void shouldIdentifyFileAsEmpty() throws ChunkedMediumException {
         assertTrue("Empty", ChunkedFile.getChunkedFile(TestConstants.getTestFile("testEmpty", false)).isEmpty());
     }

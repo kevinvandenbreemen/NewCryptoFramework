@@ -87,6 +87,18 @@ public class ChunkedFile {
         return ret;
     }
 
+    public static boolean isChunkedFile(File file) {
+        if(!file.exists() || file.isDirectory()) {
+            return false;
+        }
+        try {
+            getChunkedFile(file);
+            return true;
+        } catch(ChunkedMediumException ex) {
+            return false;
+        }
+    }
+
     void addFileTypeSignature() {
         writeBytesInternal(0, SIGNATURE);
     }
