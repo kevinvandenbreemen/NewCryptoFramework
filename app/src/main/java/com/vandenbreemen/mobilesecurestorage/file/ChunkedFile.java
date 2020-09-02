@@ -92,7 +92,8 @@ public class ChunkedFile {
             return false;
         }
         try {
-            getChunkedFile(file);
+            ChunkedFile ret = new ChunkedFile(file);
+            ret.validateFile();
             return true;
         } catch(ChunkedMediumException ex) {
             return false;
