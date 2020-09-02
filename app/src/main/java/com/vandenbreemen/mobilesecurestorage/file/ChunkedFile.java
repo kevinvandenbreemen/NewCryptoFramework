@@ -88,7 +88,7 @@ public class ChunkedFile {
     }
 
     public static boolean isChunkedFile(File file) {
-        if(!file.exists() || file.isDirectory()) {
+        if(!file.exists() || file.isDirectory() || file.length() == 0) {
             return false;
         }
         try {

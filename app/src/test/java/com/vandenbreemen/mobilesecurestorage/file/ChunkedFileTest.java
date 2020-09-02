@@ -204,6 +204,16 @@ public class ChunkedFileTest {
     }
 
     @Test
+    public void shouldNotRecognizeEmptyFileAsChunkedFile() throws Exception {
+        File file = new File("fake_"+System.currentTimeMillis());
+        if(!file.createNewFile()){
+            fail("Invalid test -- cannot create new file to test with");
+        }
+
+        assertFalse(ChunkedFile.isChunkedFile(file));
+    }
+
+    @Test
     public void shouldIdentifyFileAsEmpty() throws ChunkedMediumException {
         assertTrue("Empty", ChunkedFile.getChunkedFile(TestConstants.getTestFile("testEmpty", false)).isEmpty());
     }
